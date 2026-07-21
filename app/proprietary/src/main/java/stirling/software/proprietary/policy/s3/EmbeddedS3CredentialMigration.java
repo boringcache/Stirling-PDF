@@ -201,8 +201,7 @@ public class EmbeddedS3CredentialMigration {
                 policy.name(),
                 policy.owner(),
                 policy.enabled(),
-                policy.trigger(),
-                policy.sourceIds(),
+                policy.inputs(),
                 policy.steps(),
                 output,
                 policy.teamId());

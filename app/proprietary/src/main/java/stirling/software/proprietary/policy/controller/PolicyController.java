@@ -319,8 +319,7 @@ public class PolicyController {
                 policy.name(),
                 owner,
                 policy.enabled(),
-                policy.trigger(),
-                policy.sourceIds(),
+                policy.inputs(),
                 policy.steps(),
                 policy.output(),
                 teamId);
@@ -363,8 +362,7 @@ public class PolicyController {
                 policy.name(),
                 policy.owner(),
                 policy.enabled(),
-                policy.trigger(),
-                policy.sourceIds(),
+                policy.inputs(),
                 policy.steps(),
                 output,
                 policy.teamId());
