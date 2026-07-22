@@ -119,6 +119,7 @@ jobs:
           setup: none
           mode: gradle
           workspace: ${{ env.BORINGCACHE_WORKSPACE }}
+          cache-runtime: "false"
           cache-tag: stirling-gradle
           gradle-home: ~/.gradle
           enable-build-cache: "true"
@@ -183,6 +184,7 @@ jobs:
           setup: none
           mode: gradle
           workspace: ${{ env.BORINGCACHE_WORKSPACE }}
+          cache-runtime: "false"
           cache-tag: stirling-gradle
           gradle-home: ~/.gradle
           enable-build-cache: "true"
@@ -197,6 +199,7 @@ jobs:
           setup: none
           mode: rust-sccache
           workspace: ${{ env.BORINGCACHE_WORKSPACE }}
+          cache-runtime: "false"
           working-directory: frontend/editor/src-tauri
           cache-tag: stirling-tauri
           rust-version: stable
