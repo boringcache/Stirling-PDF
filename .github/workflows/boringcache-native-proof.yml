@@ -1,4 +1,4 @@
-name: BoringCache build-cache proof
+name: Build Docker images and applications (PR test)
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   packages: write
 
 concurrency:
-  group: boringcache-native-proof
+  group: native-build-proof
   cancel-in-progress: true
 
 env:
@@ -20,7 +20,7 @@ env:
 
 jobs:
   build:
-    name: ${{ matrix.arch }} native 4-core build
+    name: Build Docker image (${{ matrix.arch }})
     strategy:
       fail-fast: false
       matrix:
@@ -87,7 +87,7 @@ jobs:
           diagnostics: summary
 
   gradle:
-    name: Gradle build cache
+    name: Backend build
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
@@ -131,7 +131,7 @@ jobs:
         run: task backend:build:ci
 
   rust:
-    name: Linux Tauri with Gradle and sccache
+    name: Build Tauri application (ubuntu-22.04)
     runs-on: ubuntu-22.04
     timeout-minutes: 45
     env:
@@ -222,7 +222,7 @@ jobs:
         run: task desktop:test
 
   manifest:
-    name: Merge and verify manifest
+    name: Publish Docker manifest
     needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 15
