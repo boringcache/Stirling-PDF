@@ -201,7 +201,7 @@ jobs:
           working-directory: frontend/editor/src-tauri
           cache-tag: stirling-tauri
           rust-version: stable
-          cache-cargo: "true"
+          cache-cargo: "false"
           cache-target: "false"
           sccache: "true"
           sccache-mode: proxy
