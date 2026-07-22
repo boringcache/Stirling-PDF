@@ -104,6 +104,15 @@ jobs:
           java-version: "25"
           distribution: temurin
 
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@3f131e8634966bd73d06cc69884922b02e6faf92 # v6.2.0
+        with:
+          gradle-version: 9.6.1
+          cache-disabled: true
+
+      - name: Set up Task
+        uses: go-task/setup-task@01a4adf9db2d14c1de7a560f09170b6e0df736aa # v2.1.0
+
       - name: Set up Gradle cache
         uses: boringcache/one@bd5597d3b41b5b52641c65787dcd1711fb1f675b # v1.13.97
         with:
@@ -121,10 +130,10 @@ jobs:
           diagnostics: summary
 
       - name: Build backend
-        run: ./gradlew build -PnoSpotless --no-daemon
+        run: task backend:build:ci
 
   rust:
-    name: Rust sccache
+    name: Linux Tauri with Gradle and sccache
     runs-on: ubuntu-22.04
     timeout-minutes: 45
     env:
@@ -140,10 +149,53 @@ jobs:
           sudo apt-get install -y \
             libappindicator3-dev \
             libgtk-3-dev \
+            libjavascriptcoregtk-4.0-dev \
             libjavascriptcoregtk-4.1-dev \
+            patchelf \
             librsvg2-dev \
+            libsoup2.4-dev \
             libsoup-3.0-dev \
+            libwebkit2gtk-4.0-dev \
             libwebkit2gtk-4.1-dev
+
+      - name: Set up Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Set up JDK 25
+        uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
+        with:
+          java-version: "25"
+          distribution: temurin
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@3f131e8634966bd73d06cc69884922b02e6faf92 # v6.2.0
+        with:
+          gradle-version: 9.6.1
+          cache-disabled: true
+
+      - name: Set up Task
+        uses: go-task/setup-task@01a4adf9db2d14c1de7a560f09170b6e0df736aa # v2.1.0
+
+      - name: Set up Gradle cache
+        uses: boringcache/one@bd5597d3b41b5b52641c65787dcd1711fb1f675b # v1.13.97
+        with:
+          setup: none
+          mode: gradle
+          workspace: ${{ env.BORINGCACHE_WORKSPACE }}
+          cache-tag: stirling-gradle
+          entries: |
+            stirling-gradle-wrapper:~/.gradle/wrapper
+            stirling-gradle-modules:~/.gradle/caches/modules-2
+          gradle-home: ~/.gradle
+          enable-build-cache: "true"
+          save-always: "true"
+          fail-on-cache-error: "true"
+          verify: wait
+          diagnostics: summary
 
       - name: Set up Rust cache
         uses: boringcache/one@bd5597d3b41b5b52641c65787dcd1711fb1f675b # v1.13.97
@@ -158,13 +210,19 @@ jobs:
           cache-target: "false"
           sccache: "true"
           sccache-mode: proxy
+          save-always: "true"
           fail-on-cache-error: "true"
           verify: wait
           diagnostics: summary
 
-      - name: Compile Tauri tests
-        working-directory: frontend/editor/src-tauri
-        run: cargo test --locked --no-run
+      - name: Prepare desktop build
+        env:
+          DISABLE_ADDITIONAL_FEATURES: "true"
+          JPDFIUM_PLATFORMS: linux-x64
+        run: task desktop:prepare
+
+      - name: Run Tauri/Cargo tests
+        run: task desktop:test
 
   manifest:
     name: Merge and verify manifest
