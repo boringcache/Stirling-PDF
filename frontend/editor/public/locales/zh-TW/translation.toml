@@ -356,6 +356,7 @@ text = "這些權限控制使用者對 PDF 可進行的操作。與擁有者密�
 title = "變更權限"
 
 [addStamp]
+preview = "Preview Stamp"
 tags = "stamp,mark,seal,approved,rejected,confidential,stamp tool,rubber stamp,date stamp,approval stamp,received,void,copy,original"
 
 [AddStampRequest]
@@ -1842,6 +1843,15 @@ export = "匯出"
 accessDenied = "拒絕存取"
 insufficientPermissions = "您沒有執行此操作的權限。"
 
+[auth.callback]
+completing = "Completing authentication"
+invalidToken = "OAuth login failed - invalid token."
+missingToken = "OAuth login failed - no token received."
+oauthFailed = "OAuth login failed. Please try again."
+pleaseWait = "Please wait while we finish signing you in."
+signedOut = "You have been signed out. Please sign in again."
+windowMayClose = "You can close this window once it completes."
+
 [auth.displayName]
 guest = "訪客"
 user = "使用者"
@@ -2824,6 +2834,7 @@ next = "下一步"
 preview = "預覽"
 previous = "上一步"
 refresh = "重新整理"
+remaining = "Remaining"
 retry = "重試"
 save = "儲存"
 
@@ -3723,19 +3734,8 @@ uploadToServer = "Upload to server"
 versionHistory = "Version history"
 
 [fileSidebar.groupsModal]
-add = "新增"
-addLabel = "新增標籤…"
-categoryIconAria = "為 {{name}} 選擇圖示"
-createCategory = "建立類別"
-delete = "刪除類別"
 done = "完成"
-hide = "隱藏類別"
-newCategory = "新類別名稱…"
-removeLabel = "移除 {{name}}"
-rename = "重新命名"
 reset = "重設為預設值"
-search = "搜尋標籤…"
-show = "顯示類別"
 subtitle = "將您的檔案分組到父類別中。將現有或新的標籤新增至類別、重新命名，或建立您自己的類別。不屬於任何類別的檔案會顯示在「其他」下。"
 title = "側邊欄類別"
 
@@ -4072,10 +4072,17 @@ discord = "Discord"
 issues = "GitHub"
 
 [formFill]
+allSaved = "All saved"
+extractCsvError = "Failed to extract CSV"
+extractXlsxError = "Failed to extract XLSX"
 flattenAfterFilling = "填寫後扁平化"
+requiredAbbreviation = "req"
+requiredFieldsError = "Please fill in all required fields"
 rescanFields = "重新掃描欄位"
 rescanFormFields = "重新掃描表單欄位"
 save = "儲存"
+saveShortcut = "Ctrl+S to save"
+unsavedChanges = "Unsaved changes"
 
 [formFill.sidebar]
 close = "關閉側邊欄"
@@ -4647,7 +4654,6 @@ welcomeTitle = "您已獲邀！"
 
 [landing]
 addFiles = "新增檔案"
-heroSubtitle = "拖放或新增現有的 PDF 即可開始。"
 mobileUpload = "從行動裝置上傳"
 openFromComputer = "從電腦開啟"
 uploadFromComputer = "從電腦上傳"
@@ -4696,6 +4702,7 @@ login = "登入"
 magicLinkSent = "魔術連結已寄至 {{email}}！請查看您的電子郵件並點選連結登入。"
 mfaCode = "驗證碼"
 mfaRequired = "需要雙重驗證碼"
+noAccount = "Don't have an account?"
 or = "或"
 password = "密碼"
 passwordChangedSuccess = "密碼變更成功！請使用新密碼登入。"
@@ -4719,21 +4726,6 @@ useEmailInstead = "使用電子郵件登入"
 useMagicLink = "改用魔術連結"
 username = "使用者名稱"
 youAreLoggedIn = "您已登入！"
-
-[login.slides.edit]
-alt = "編輯 PDF"
-subtitle = "提供十多種工具，協助您遮蔽、簽署、閱讀與處理 PDF，滿足您的各種需求。"
-title = "編輯 PDF 以顯示/保護您想要的資訊"
-
-[login.slides.overview]
-alt = "Stirling PDF 概覽"
-subtitle = "以隱私為先的 PDF 雲端套件，讓您轉換、簽署、遮蔽與管理文件，並提供 50+ 種強大工具。"
-title = "滿足您所有 PDF 需求的一站式平台。"
-
-[login.slides.secure]
-alt = "保護 PDF"
-subtitle = "輕鬆新增密碼、遮蔽內容並管理憑證。"
-title = "保護 PDF 中的敏感資訊"
 
 [margin]
 large = "大"
@@ -4976,6 +4968,7 @@ pinButton = "如果您希望檔案在執行工具後保持使用中狀態，可�
 results = "工具執行完畢後，<strong>檢閱</strong> 步驟會在此面板顯示結果預覽，並允許您復原操作或下載檔案。 "
 runButton = "設定完成後，使用此按鈕即可在所有已選取的 PDF 上執行該工具。"
 selectCropTool = "我們先選擇 <strong>裁切</strong> 工具，示範如何使用其中一個工具。"
+stepOf = "Step {{current}} of {{total}}"
 toolInterface = "這是 <strong>裁切</strong> 工具介面。如您所見，因為尚未加入任何 PDF 檔可供操作，因此內容不多。"
 workbench = "這裡是 <strong>工作區</strong>——檢視與編輯 PDF 的主要區域。"
 wrapUp = "大功告成！您已了解此應用程式的主要區域與使用方式。隨時點選 <strong>說明</strong> 按鈕可再度觀看本導覽。"
@@ -4988,6 +4981,26 @@ showMeAround = "帶我導覽"
 skipForNow = "暫時略過"
 skipTheTour = "略過導覽"
 
+[onboarding.checklist]
+dismiss = "Dismiss"
+title = "Set up Stirling PDF"
+
+[onboarding.checklist.downloadDesktop]
+description = "Run Stirling natively on your machine"
+title = "Download Stirling for Desktop"
+
+[onboarding.checklist.inviteTeam]
+description = "Collaborate with your team"
+title = "Invite team members"
+
+[onboarding.checklist.shareAnalytics]
+description = "Help improve Stirling"
+title = "Share anonymous usage data"
+
+[onboarding.checklist.takeTour]
+description = "See how Stirling works in a quick walkthrough"
+title = "Take the tour"
+
 [onboarding.desktopInstall]
 body = "Stirling 最適合以桌面應用程式使用。您可以離線操作、更快存取文件，並在電腦本機進行編輯。"
 selectOs = "選擇作業系統"
@@ -4996,7 +5009,21 @@ titleWithOs = "下載適用於 {{osLabel}} 的版本"
 
 [onboarding.mfa]
 authenticationCode = "驗證碼"
+description = "Secure your account by linking an authenticator app. Scan the QR code or enter the setup key, then confirm the 6-digit code to finish."
+enable = "Enable MFA"
+enableError = "Unable to enable two-factor authentication. Check the code and try again."
+enterCode = "Enter the 6-digit code from your app."
+enterCodeError = "Enter the authentication code to continue."
+logout = "Logout"
+openAuthenticator = "Open Google Authenticator, Authy, or 1Password."
 qrCodeLoading = "正在產生您的 QR 碼…"
+regenerateQrCode = "Regenerate QR code"
+scanQrCode = "Scan the QR code or enter the setup key below."
+setupError = "Unable to start two-factor setup. Please try again."
+setupKey = "Setup key (manual entry)"
+stepByStep = "Step-by-step"
+success = "MFA has been enabled. You can now continue."
+title = "Multi-Factor Authentication Setup"
 
 [onboarding.planOverview]
 adminBodyLoginDisabled = "啟用登入模式後，您可以管理使用者、設定參數並監控伺服器健康狀態。伺服器上的前 <strong>{{freeTierLimit}}</strong> 人可免費使用 Stirling。"
@@ -5004,6 +5031,11 @@ adminBodyLoginEnabled = "身為管理員，您可以管理使用者、設定參�
 adminTitle = "管理員總覽"
 userBody = "邀請隊友、指派角色，並在單一安全的工作區中整理您的文件。當您準備好超越個人使用時，可隨時啟用登入模式。"
 userTitle = "方案總覽"
+
+[onboarding.processorIntro]
+body = "Stirling now runs <strong>Policies</strong> — automated rules that classify, secure, and process every document as it arrives. Set them up and monitor runs in the <strong>Processor</strong>."
+cta = "Check out the Processor"
+title = "Check out the Stirling Processor"
 
 [onboarding.saas.freeEditor]
 freeLine = "The editor is now <free>completely free</free>."
@@ -5937,48 +5969,11 @@ keyDescription = "貼上電子郵件中的授權金鑰"
 success = "授權已啟用！"
 successMessage = "您的授權已成功啟用。您現在可以關閉此視窗。"
 
-[policies]
-deleteConfirmBody = "This removes the policy and its workflow. Documents already processed are not affected."
-deleteConfirmTitle = "Delete {{label}} policy?"
-
 [policies.activity]
-enforced = "已強制執行"
-enforcing = "正在強制執行..."
-failed = "強制執行失敗"
 outputsUnavailable = "政策輸出結果已無法下載。"
 partialOutputsUnavailable = "部分政策輸出結果已無法下載。"
-retrying = "忙碌中，正在重試..."
 runNotFound = "找不到此強制執行作業。"
-step = "步驟 {{current}}/{{total}}"
 timedOut = "強制執行在作業完成前逾時。"
-
-[policies.catalog]
-compliance = "Compliance"
-ingestion = "Ingestion"
-retention = "Retention"
-routing = "Routing"
-security = "Security"
-
-[policies.detail]
-close = "關閉"
-editSettings = "Edit Settings"
-enforces = "Enforces"
-managedByOrg = "Managed by your organisation. Contact a team leader to change this policy."
-noActivityDescription = "Documents will appear here once this policy runs."
-noActivityTitle = "No activity yet"
-onEveryUpload = "On every upload"
-originalsNote = "Originals stay untouched • Enforced version saved alongside"
-pause = "Pause"
-recentActivity = "Recent Activity"
-resume = "Resume"
-retry = "Retry"
-showLess = "Show less"
-showMore = "Show more"
-statActive = "Active"
-statDataProcessed = "Data processed"
-statDocsEnforced = "Docs enforced"
-statusActive = "Active"
-statusPaused = "Paused"
 
 [policies.enforcement]
 applying = "正在套用 {{names}}"
@@ -5989,61 +5984,16 @@ failureBody = "{{total}} 個檔案中有 {{failures}} 個無法處理，已照�
 failureTitle = "未完全強制執行即匯出"
 printPolicyAppliedBody = "已更新此 PDF 以符合政策。請檢視變更後再重新列印。"
 printPolicyAppliedTitle = "列印前已套用政策"
-queued = "+{{count}} 已佇列"
 successTitle = "{{names}} 已套用"
 summaryMore = "{{first}}、{{second}}，以及另外 {{more}} 個"
 summaryTwo = "{{first}} 與 {{second}}"
 
-[policies.enforcement.triggerVerb]
-convert = "轉換前強制執行"
-default = "正在強制執行"
-export = "匯出前強制執行"
-input = "匯入時強制執行"
-print = "列印前強制執行"
-
-[policies.field]
-accessLog = "存取記錄"
-archiveAfter = "之後封存"
-auditTrail = "稽核軌跡"
-belowThreshold = "低於門檻"
-destination = "目的地"
-frameworks = "架構"
-immutableHold = "不可變更保留"
-keepFor = "保留期間"
-minConfidence = "最低信心度"
-notify = "路由時通知"
-onViolation = "不符合規範時"
-webhookUrl = "Webhook URL"
-
-[policies.fields]
-selectedCount = "{{count}} selected"
-
 [policies.labels]
-add = "新增"
-addPlaceholder = "新增標籤…"
-customNote = "已為您的團隊自訂。"
-defaultNote = "使用內建預設值，與您的團隊共用。"
-duplicate = "\"{{name}}\" 已存在。"
-edit = "編輯標籤"
-empty = "尚無標籤。"
-export = "匯出 JSON"
-iconAria = "為 {{name}} 選擇圖示"
-import = "匯入 JSON"
-importError = "無法匯入該檔案。"
-managedNote = "團隊標籤由您的團隊負責人管理。"
-modalSubtitle = "與整個團隊共用。分類器會挑選適合每份文件的標籤。"
-modalTitle = "分類標籤"
-pickIcon = "使用 {{label}} 圖示"
-removeAria = "移除 {{name}}"
-resetToDefault = "重設為預設值"
-saveForTeam = "為團隊儲存"
-saving = "正在儲存…"
-sectionLabel = "分類標籤"
-startFromScratch = "從頭開始"
-teamCount = "團隊標籤"
-tooLong = "標籤最多可為 {{max}} 個字元。"
-ungrouped = "未分組"
-view = "檢視標籤"
+categoryCount = "categories"
+hideCategory = "Hide category"
+labelCount = "labels"
+sharedNote = "These labels are built in and shared across your whole team."
+showCategory = "Show category"
 
 [policies.pii]
 account = "帳戶號碼（具標籤）"
@@ -6056,90 +6006,6 @@ placeholder = "Select PII types"
 routing = "美國銀行路由號碼（ABA）"
 ssn = "社會安全號碼"
 
-[policies.settings]
-noneExport = "目前匯出時沒有執行任何政策。"
-noneUpload = "目前上傳時沒有執行任何政策。"
-onExport = "匯出時"
-onUpload = "上傳時"
-reorderHandle = "拖曳以重新排序"
-runOrderDesc = "當多個政策在同一觸發條件下執行時，它們會依此順序執行 — 每個政策都會使用前一個政策的輸出。拖曳以重新排序。"
-title = "政策設定"
-
-[policies.sidebar]
-activeCount = "{{count}} active"
-infoTooltip = "A policy is a fixed set of tools that runs automatically whenever it's triggered — for example when a new document arrives — enforcing rules like redacting PII with no manual steps."
-loading = "Loading…"
-optionsAriaLabel = "政策選項"
-policySettings = "政策設定"
-railAriaLabel = "{{label}} policy — {{status}}"
-railSuffixActive = " (Active)"
-railSuffixPaused = " (Paused)"
-retryFailed = "重試失敗的政策（{{count}}）"
-rowProgress = "已處理 {{completed}} / {{total}} 個檔案"
-setUp = "Set up"
-title = "Policies"
-upgradeToEnterprise = "Upgrade to enterprise"
-whatIsPolicy = "什麼是政策？"
-
-[policies.status]
-active = "Active"
-paused = "Paused"
-setup = "Set up"
-
-[policies.toolConfig]
-enableAriaLabel = "Enable {{tool}}"
-infoAriaLabel = "What does {{tool}} do?"
-
-[policies.toolConfig.info]
-redact = "自動找出並塗黑敏感資訊（如社會安全號碼與卡號），使其在文件中無法讀取。"
-sanitize = "移除檔案中的隱藏 JavaScript，以避免在開啟時自動執行任何內容。"
-watermark = "在每一頁加蓋可見標記（例如 \"Confidential\"）。"
-
-[policies.wizard]
-allDocTypesDescription = "Enable the Classification policy to filter by document type."
-allDocTypesTitle = "All document types"
-back = "Back"
-builderDesc = "Build the sequence of tools this policy runs on each document."
-clear = "Clear"
-close = "關閉"
-continue = "Continue"
-docTypesLabel = "Document types"
-edit = "Edit"
-editTitle = "Edit {{label}} Policy"
-enablePolicy = "Enable Policy"
-filenameAutoNumber = "Auto-number"
-filenamePositionAria = "Filename position"
-filenamePrefix = "Prefix"
-filenameSuffix = "Suffix"
-filenameTextAria = "Filename text"
-filenameTextPlaceholder = "Text to add (optional)"
-lockedDescription = "Contact a team leader to change this policy."
-lockedTitle = "Managed by your organisation"
-maxRetriesLabel = "Max retries"
-noToolsError = "Add at least one configured tool to the workflow first."
-outputAsLabel = "Output as"
-outputFilenameSubhead = "Output filename"
-outputModeAria = "Output mode"
-outputNewFile = "New file"
-outputNewVersion = "New version"
-outputRetriesLabel = "Output & retries"
-outputSubhead = "Output"
-retryDelayAria = "Retry delay minutes"
-retryDelayLabel = "Retry delay (min)"
-runOnExport = "Export"
-runOnLabel = "Run on"
-runOnSubhead = "Run on"
-runOnUpload = "Upload"
-saveChanges = "Save Changes"
-saveError = "Couldn't save the policy. Please try again."
-setupClassification = "Set up Classification"
-setupTitle = "Set up {{label}} Policy"
-sourcesDesc = "Choose where this policy runs and which document types it applies to."
-sourcesLabel = "Sources"
-stepOf = "Step {{step}} of {{total}}"
-toolChainDesc = "Configure the tools this policy runs on each document."
-typesSelected = "{{count}} types selected"
-
 [policy]
 badgeEnforcing = "{{name}} 正在強制執行..."
 badgeRan = "{{name}} 政策已在此檔案上執行"
@@ -6151,6 +6017,7 @@ viewAnyway = "檢視檔案（政策仍在強制執行）"
 [policyOption]
 autoRedactPhi = "自動遮蔽 PHI"
 blockExport = "封鎖匯出"
+ccpa = "CCPA"
 contracts = "合約"
 documents = "文件"
 fedramp = "FedRAMP"
@@ -6269,86 +6136,6 @@ free = "Editor 方案"
 subscribed = "Processor 方案"
 unlinked = "未連結"
 
-[portal.agentBuilder]
-bootstrapFromDocument = "從文件啟動"
-sectionsAriaLabel = "代理程式建構器區段"
-selectorAriaLabel = "代理程式"
-subtitle = "設計、測試並發布可分類、擷取及路由文件的 AI 代理程式。定義情境、限制工具存取、執行 golden set，並發布版本。"
-title = "Agent Builder"
-
-[portal.agentBuilder.bootstrap]
-cancel = "取消"
-dropzoneText = "選擇範例文件（PDF 或影像）"
-lead = "拖放範例文件，我們會提出情境和擷取 schema 供您調整。在您審查之前不會發布任何內容。"
-submit = "啟動代理程式"
-subtitle = "以一個代表性檔案建立新代理程式的初始資料"
-title = "從文件啟動"
-
-[portal.agentBuilder.empty]
-description = "從範例文件啟動代理程式，以建立其情境和擷取 schema 的初始資料，然後調整並發布。"
-title = "尚無代理程式"
-
-[portal.agentBuilder.evals]
-casesPassing = "通過案例"
-columnCase = "Eval 案例"
-columnLatency = "延遲"
-columnResult = "結果"
-fail = "失敗"
-goldenSetPassRate = "Golden-set 通過率"
-latencyMs = "{{ms}} ms"
-notRun = "未執行"
-pass = "通過"
-passRate = "通過率"
-runEvals = "執行 evals"
-
-[portal.agentBuilder.evals.empty]
-description = "Evals 會將您的情境轉換為可重複的 golden set。升級即可追蹤一段時間內的通過率，並以此作為發布門檻。"
-title = "尚無 golden set"
-
-[portal.agentBuilder.kpi]
-acrossGoldenSets = "跨 golden sets"
-activeAgents = "啟用中的代理程式"
-avgPassRate = "平均 eval 通過率"
-fleetWide = "全系統"
-latestPublished = "最新發布"
-scenarios = "情境"
-testCases = "測試案例"
-totalDescription_one = "共 {{count}} 個"
-totalDescription_other = "共 {{count}} 個"
-
-[portal.agentBuilder.scenarios]
-add = "新增"
-addScenario = "新增情境"
-enable = "啟用"
-expectationLabel = "預期行為"
-expectationPlaceholder = "代理程式應該做什麼"
-inEval = "在 eval 中"
-mute = "靜音"
-muted = "已靜音"
-nameLabel = "名稱"
-namePlaceholder = "例如：合規升級"
-
-[portal.agentBuilder.tabs]
-evals = "Evals"
-scenarios = "情境"
-tools = "工具"
-versions = "版本"
-
-[portal.agentBuilder.tools]
-broadAccess = "廣泛存取"
-deniedHint = "選取的工具已被封鎖。其他所有工具仍可呼叫。"
-deniedTools = "拒絕的工具"
-governanceGate = "工具治理可在 Enterprise 方案使用。"
-restricted = "受限制"
-restrictedAccess = "受限制的工具存取"
-restrictedDescription = "允許所有工具，除了您在下方拒絕的工具。"
-
-[portal.agentBuilder.versions]
-current = "目前"
-historyGate = "完整版本歷史記錄與復原可在 Enterprise 方案使用。"
-publish = "發布"
-rollBack = "復原"
-
 [portal.assistant]
 close = "關閉助理"
 error = "無法連線到助理。"
@@ -6367,6 +6154,7 @@ redirectingToEditor = "正在重新導向至編輯器..."
 
 [portal.billing.checkout]
 noClientSecret = "Edge function 未傳回 client_secret。"
+stepCount = "Step {{step}} of 2"
 subtitle = "新增卡片以在免費 Editor 方案額度用完後繼續使用。其餘由 Stripe 處理。"
 title = "啟用 Processor 方案"
 
@@ -6375,6 +6163,20 @@ body = "您的付款已成功，但啟用花費的時間比平常稍長。它會
 close = "關閉"
 title = "快完成了"
 
+[portal.billing.checkout.cap]
+back = "Back"
+continue = "Continue to payment"
+error = "Couldn't set your spend limit"
+finePrint = "Invoices post on the 1st. Cancel anytime and revert to the Editor plan; your policies and history stay intact."
+note = "Processing pauses if you reach it. You're never billed past this, and you can change it any time."
+subtitle = "You're billed only for PDFs you process past your first 500 free, never for seats — so your ceiling is yours from day one."
+title = "Set your spend limit"
+
+[portal.billing.checkout.card]
+fields = "Card number · MM / YY · CVC · ZIP"
+label = "Card details"
+note = "Card details collected by Stripe. Stirling never stores PAN or CVC."
+
 [portal.billing.checkout.error]
 title = "無法開始結帳"
 
@@ -6382,11 +6184,6 @@ title = "無法開始結帳"
 body = "您的付款已完成。我們正在您的已連結執行個體上啟用計量處理 — 這通常需要幾秒鐘。"
 hint = "請保持此視窗開啟。"
 title = "正在啟用您的 Processor 方案..."
-
-[portal.billing.checkout.notConfigured]
-bodyAfter = "於入口網站 env 中，以啟用應用程式內結帳。"
-bodyBefore = "設定"
-title = "尚未設定 Stripe"
 
 [portal.billing.enterpriseUpsell]
 cta = "建立您的 Enterprise 報價"
@@ -6465,7 +6262,12 @@ segmentApiDesc = "直接 API 請求"
 segmentApiLabel = "API"
 segmentAutomationDesc = "自動化與管線"
 segmentAutomationLabel = "自動化"
+sizeMultiplier = "{{formatted}} PDFs used a size multiplier"
+summary = "{{unique}} unique · {{units}} meter units · {{avg}} avg per PDF"
+summaryNoRate = "{{unique}} unique · {{units}} meter units"
 unit = "計量 PDFs"
+unitsPending_one = "{{units}} meter unit pending sync from linked instances"
+unitsPending_other = "{{units}} meter units pending sync from linked instances"
 
 [portal.billing.spendLimit]
 adjustLimit = "調整限制"
@@ -6494,6 +6296,8 @@ label = "預計會超出。"
 
 [portal.billing.spendThisMonth]
 eyebrow = "本月支出"
+freeRemaining_one = "{{formatted}} free PDF remaining"
+freeRemaining_other = "{{formatted}} free PDFs remaining"
 processed_one = "已處理 {{formattedCount}} 個 PDF。"
 processed_other = "已處理 {{formattedCount}} 個 PDFs。"
 processedWithRate_one = "已處理 {{formattedCount}} 個 PDF，每個 {{rate}}。"
@@ -6533,6 +6337,39 @@ signature = "簽章"
 [portal.components.maturity]
 beta = "Beta"
 ga = "GA"
+
+[portal.connections]
+createTitle = "New S3 connection"
+delete = "Delete"
+edit = "Edit"
+editTitle = "Edit S3 connection"
+subtitle = "Reusable S3 credentials that sources and pipeline outputs connect to."
+
+[portal.connections.actions]
+new = "New connection"
+
+[portal.connections.empty]
+description = "Add an S3 connection to reuse the same bucket and credentials across sources and pipeline outputs."
+title = "No connections yet"
+
+[portal.connections.picker]
+cancel = "Cancel"
+createNew = "New connection..."
+placeholder = "Select a connection"
+save = "Save connection"
+
+[portal.connections.s3.fields]
+name = "Connection name"
+namePlaceholder = "e.g. Claims bucket"
+
+[portal.connections.table]
+bucket = "Bucket"
+name = "Name"
+region = "Region"
+
+[portal.docs]
+browse = "Browse docs"
+viewSource = "View source on GitHub"
 
 [portal.docs.authentication]
 codeCaption = "每個請求"
@@ -6619,10 +6456,18 @@ title = "官方 SDKs"
 beta = "Beta"
 deprecated = "已淘汰"
 
+[portal.docs.search]
+empty = "No matching docs"
+placeholder = "Search docs"
+results = "{{count}} results"
+
 [portal.docs.skills]
 eyebrow = "SKILLS"
 lead = "代理程式以單一工具呼叫的內建命名能力。每項 skill 都是附有 evals 的確定性操作鏈。"
 title = "代理程式 skills"
+
+[portal.docs.toc]
+title = "On this page"
 
 [portal.docs.webhooks]
 codeCaption = "document.processed"
@@ -6697,6 +6542,8 @@ type = "類型"
 user = "使用者"
 
 [portal.documents.queue.empty]
+connectSource = "Connect a source"
+createPipeline = "Create a pipeline"
 description = "當來源將文件送入您的管線時，它們會出現在這裡供審查。"
 title = "佇列中沒有文件"
 
@@ -6806,8 +6653,63 @@ description = "此檢視發生未預期的錯誤。請再試一次，或從側�
 retry = "再試一次"
 title = "此頁面發生問題"
 
+[portal.home.download]
+back = "Back"
+body = "Download the desktop app or self-host the server."
+done = "Done"
+guide = "Open the {{name}} guide"
+openInBrowser = "Open in browser instead"
+sectionDesktop = "Desktop app"
+sectionSelfHosted = "Self-hosted"
+title = "Install the Stirling PDF Editor"
+
+[portal.home.download.docker]
+detailBody = "Run the official image on your server."
+note = "Opens at :8080. Default login: admin / stirling."
+tagline = "Run the server in a container"
+title = "Docker"
+variantFat = "Fat"
+variantLite = "Ultra-Lite"
+variantStandard = "Standard"
+
+[portal.home.download.kubernetes]
+detailBody = "Install the official Helm chart."
+note = "Add a PVC for /configs to persist settings."
+tagline = "Deploy to a cluster with Helm"
+title = "Kubernetes"
+
+[portal.home.download.linux]
+detailBody = "Native builds for your distribution."
+guideBtn = "View Linux install options"
+note = "AppImage, .deb and .rpm builds are available for common distros."
+tagline = "Native desktop app for your distro"
+title = "Linux"
+
+[portal.home.download.mac]
+altLabel = "Or via Homebrew"
+detailBody = "Run the installer, or use Homebrew."
+downloadBtn = "Download for macOS"
+tagline = "Native app for Apple silicon and Intel"
+title = "macOS"
+
+[portal.home.download.manual]
+detailBody = "Run the .jar on a bare metal server."
+downloadBtn = "Download the .jar"
+note = "Requires Java 21+. Opens at :8080; default login admin / stirling."
+runLabel = "Then run it"
+tagline = "Run the .jar on a bare metal server"
+title = "Manual server setup"
+
+[portal.home.download.windows]
+altLabel = "Or via winget"
+detailBody = "Run the installer, or use a package manager."
+downloadBtn = "Download installer"
+tagline = "Native app for Microsoft Windows"
+title = "Windows"
+
 [portal.home.editor]
 activeUsers = "{{n}} 位活躍"
+install = "Install the editor"
 invite = "邀請隊友"
 name = "Stirling PDF 編輯器"
 open = "在瀏覽器中開啟"
@@ -6823,12 +6725,6 @@ afternoon = "午安"
 evening = "晚安"
 morning = "早安"
 
-[portal.home.onboarding]
-dismiss = "關閉設定"
-notStarted = "尚未開始"
-progress = "已完成 {{done}} / {{total}}"
-title = "完成設定"
-
 [portal.home.onboarding.enterprise]
 body = "全組織 SSO + SCIM + RBAC、承諾用量價格，以及隔離網路部署。"
 cta = "開始試用"
@@ -6840,15 +6736,13 @@ tag = "Enterprise"
 blurb = "部署桌面應用程式，永久免費。"
 title = "下載 PDF 編輯器"
 
+[portal.home.onboarding.steps.invite]
+blurb = "Bring your team into the secure workspace"
+title = "Invite teammates"
+
 [portal.home.onboarding.steps.policies]
 blurb = "{{active}} 個啟用 · {{recommended}} 個建議"
-chip = "{{active}} 個啟用"
 title = "啟用政策"
-
-[portal.home.onboarding.steps.sources]
-blurb = "{{connected}} 個已連接 · 每個 PDF 在抵達處皆受治理"
-chip = "{{connected}} 個已連接"
-title = "連接您的來源"
 
 [portal.home.quickActions]
 subtitle = "今日重點任務"
@@ -6872,6 +6766,11 @@ sectionsAriaLabel = "基礎設施區段"
 subtitle = "您 Stirling 工作區的部署、憑證、安全狀態、儲存空間與稽核軌跡。"
 title = "基礎設施"
 
+[portal.infrastructure.apiKeyPermission]
+admin = "Admin"
+read = "Read"
+write = "Write"
+
 [portal.infrastructure.apiKeys]
 createKey = "建立金鑰"
 heading = "API 金鑰"
@@ -6891,6 +6790,11 @@ usageToday = "今日用量"
 [portal.infrastructure.apiKeys.empty]
 description = "建立範圍化金鑰以開始呼叫 Stirling API。"
 title = "尚無 API 金鑰"
+
+[portal.infrastructure.attestationLabel]
+attested = "Attested"
+inScope = "In scope"
+notApplicable = "N/A"
 
 [portal.infrastructure.audit]
 filterAriaLabel = "依類別篩選稽核事件"
@@ -6935,6 +6839,7 @@ all = "全部"
 auth = "驗證"
 config = "設定"
 elevation = "權限提升"
+policy = "Policy"
 processing = "處理"
 security = "安全性"
 
@@ -6944,9 +6849,28 @@ title = "您沒有存取權"
 
 [portal.infrastructure.audit.metrics]
 config = "設定"
-elevation = "權限提升"
+policy = "Policy"
 processing = "處理"
 totalEvents = "事件總數 · 24h"
+
+[portal.infrastructure.auditCatLabel]
+auth = "Auth"
+config = "Config"
+elevation = "Elevation"
+policy = "Policy"
+processing = "Processing"
+security = "Security"
+
+[portal.infrastructure.auditStatusLabel]
+danger = "Error"
+info = "Info"
+success = "Success"
+warning = "Warning"
+
+[portal.infrastructure.certLabel]
+certified = "Certified"
+inProgress = "In progress"
+notStarted = "Not started"
 
 [portal.infrastructure.createKey]
 cancel = "取消"
@@ -6963,6 +6887,12 @@ subtitle = "將金鑰範圍限制在最低需求。您可以隨時輪換或撤�
 subtitleCreated = "立即複製此秘密 — 之後不會再顯示。"
 title = "建立 API 金鑰"
 titleCreated = "金鑰已建立"
+
+[portal.infrastructure.deployLabel]
+live = "Live"
+queued = "Queued"
+rolledBack = "Rolled back"
+rolling = "Rolling out"
 
 [portal.infrastructure.deployments]
 msValue = "{{value}} ms"
@@ -6999,6 +6929,16 @@ subheading = "每個已部署 Stirling 區域的即時健康狀態 — 延遲、
 description = "工作區佈建後，已部署區域會顯示在這裡。"
 title = "尚未部署區域"
 
+[portal.infrastructure.keyLabel]
+active = "Active"
+revoked = "Revoked"
+rotateSoon = "Rotate soon"
+
+[portal.infrastructure.modelLabel]
+active = "Active"
+degraded = "Degraded"
+disabled = "Disabled"
+
 [portal.infrastructure.models]
 heading = "模型"
 msValue = "{{value}} ms"
@@ -7026,6 +6966,10 @@ status = "狀態"
 type = "類型"
 version = "版本"
 
+[portal.infrastructure.models.cost]
+perCall = "{{price}}/call"
+perThousand = "{{price}}/1k"
+
 [portal.infrastructure.models.metrics]
 activeModels = "活躍模型"
 avgLatency = "平均延遲"
@@ -7048,6 +6992,17 @@ docType = "文件類型"
 modelForAria = "{{operation}} 的模型"
 operation = "操作"
 routedTo = "路由至"
+
+[portal.infrastructure.modelTypeLabel]
+classification = "Classification"
+extraction = "Extraction"
+llm = "LLM"
+ocr = "OCR"
+
+[portal.infrastructure.regionLabel]
+degraded = "Degraded"
+down = "Down"
+healthy = "Healthy"
 
 [portal.infrastructure.security.access.byok]
 description = "提供來自您自己 KMS 的金鑰。Stirling 會使用它加密，但仍可讀取。"
@@ -7190,25 +7145,9 @@ sources = "來源"
 usage = "用量與帳單"
 users = "使用者"
 
-[portal.notifications]
-markAllRead = "全部標為已讀"
-title = "通知"
-viewAll = "檢視全部"
-
-[portal.notifications.ariaLabel]
-none = "通知，沒有未讀"
-unread_one = "通知，{{count}} 則未讀"
-unread_other = "通知，{{count}} 則未讀"
-
-[portal.notifications.count]
-allRead = "全部已讀"
-loading = "載入中"
-new_one = "{{count}} 則新通知"
-new_other = "{{count}} 則新通知"
-
-[portal.notifications.empty]
-description = "沒有新通知。"
-title = "您已全部處理完畢"
+[portal.nav.section]
+platform = "PDF Platform"
+processor = "PDF Processor"
 
 [portal.pipelines]
 subtitle = "後端上的每個自動化文件管線：在一組來源上依序執行的操作鏈，並由觸發器執行。點擊列以查看其步驟與來源。"
@@ -7254,6 +7193,7 @@ operations_one = "操作（{{count}}）"
 operations_other = "操作（{{count}}）"
 output = "輸出"
 removeStep = "移除操作"
+s3PrefixHelp = "Outputs are uploaded under this key prefix."
 save = "儲存變更"
 scheduleEvery = "執行間隔"
 sources = "來源"
@@ -7273,11 +7213,13 @@ confirm = "刪除"
 title = "刪除管線？"
 
 [portal.pipelines.detail]
+clearHistory = "Clear history"
 delete = "刪除管線"
 run = "立即執行"
 
 [portal.pipelines.empty]
 action = "建立管線"
+connectSource = "Connect a source"
 description = "建立您的第一個管線：選擇執行來源、串接操作，並選擇輸出位置。"
 title = "尚無管線"
 
@@ -7289,12 +7231,19 @@ total = "管線"
 [portal.pipelines.output]
 folder = "寫入資料夾"
 inline = "傳回檔案"
+s3 = "Write to Amazon S3"
 
 [portal.pipelines.run]
+allProcessed_one = "Nothing to run: the source's {{count}} document has already been processed."
+allProcessed_other = "Nothing to run: all {{count}} documents in the sources have already been processed."
 completed_one = "執行已完成。"
 completed_other = "全部 {{count}} 次執行已完成。"
 empty = "沒有可執行的內容：來源沒有要處理的文件。"
 failed = "執行失敗：{{error}}"
+historyCleared = "History cleared. The next run reprocesses everything currently in the sources."
+inFlight = "Nothing new to run: documents are still being processed from an earlier run."
+parked_one = "Nothing to run: {{count}} document failed previously and is parked. Fix the cause, then clear history to retry it."
+parked_other = "Nothing to run: {{count}} documents failed previously and are parked. Fix the cause, then clear history to retry them."
 running = "執行已開始；仍在進行中。"
 timeout = "執行時間比預期更長；它可能仍會在背景完成。"
 
@@ -7314,12 +7263,18 @@ manual = "手動"
 schedule = "已排程"
 
 [portal.policies]
+defaultName = "{{category}} Policy"
 subtitle = "常駐自動化，可對每個文件強制執行工具管線。每項政策會在上傳或匯出時觸發，執行其工具鏈，並將強制版本與原始檔一併儲存。"
 title = "政策"
 
 [portal.policies.card]
 comingSoon = "升級到 Enterprise"
 notSetUp = "尚未設定"
+requiresAiEngine = "Requires AI engine"
+
+[portal.policies.categories.classification]
+desc = "Identify each document's type on upload and tag its metadata for filing and search."
+label = "Classification"
 
 [portal.policies.categories.compliance]
 desc = "對每個文件強制執行 HIPAA、GDPR、SOC 2 或 FedRAMP 要求。"
@@ -7343,6 +7298,13 @@ label = "安全性"
 
 [portal.policies.config]
 scopeAll = "所有文件"
+
+[portal.policies.config.classification]
+summary = "Classifies every uploaded document against your team's labels and tags its metadata."
+
+[portal.policies.config.classification.rules]
+0 = "Classify"
+1 = "Tag metadata"
 
 [portal.policies.config.compliance]
 summary = "在文件離開系統前，依監管框架驗證文件。"
@@ -7438,6 +7400,7 @@ title = "尚無活動"
 [portal.policies.endpoints]
 addWatermark = "浮水印"
 autoRedact = "遮蔽 PII"
+classifyAndLabel = "Classify"
 compressPdf = "壓縮"
 flatten = "扁平化"
 ocrPdf = "OCR"
@@ -7473,12 +7436,23 @@ label = "已套用文件"
 description = "已設定但未觸發"
 label = "已暫停"
 
+[portal.policies.table]
+appliesTo = "Applies to"
+docs = "Docs enforced"
+enforces = "Enforces"
+policy = "Policy"
+status = "Status"
+
 [portal.policies.wizard.actions]
 back = "返回"
 cancel = "取消"
 continue = "繼續"
 enablePolicy = "啟用政策"
 saveChanges = "儲存變更"
+
+[portal.policies.wizard.capability.classify]
+desc = "Identifies the document's type from your team's labels and tags it, so it files and searches by category."
+label = "Classify the document"
 
 [portal.policies.wizard.capability.compress]
 desc = "將文件壓縮為較小的檔案大小。"
@@ -7500,9 +7474,17 @@ label = "遮蔽敏感資訊"
 desc = "移除隱藏的 JavaScript，讓文件開啟時不會自動執行任何內容。"
 label = "移除主動內容"
 
+[portal.policies.wizard.capability.timestampPdf]
+desc = "Proves the document existed in this exact form at a point in time, using an independent timestamp authority. Only a hash is sent - the document never leaves your server."
+label = "Add a trusted timestamp"
+
 [portal.policies.wizard.capability.watermark]
 desc = "在每一頁加上可見標記（例如「機密」）。"
 label = "套用浮水印"
+
+[portal.policies.wizard.classification]
+description = "Every uploaded document is classified against the built-in labels and tagged with the types that fit. The label set is shared across your whole team."
+labelsHeading = "Classification labels"
 
 [portal.policies.wizard.errors]
 noTools = "請先在工作流程中啟用至少一項工具。"
@@ -7577,8 +7559,49 @@ soon = "即將推出"
 managePlan = "管理方案"
 volumeSuffix = "已處理 PDFs · 過去 30 天"
 
+[portal.processorFlow]
+footnote = "Counts are over the last 24 hours. Flow speed is illustrative."
+liveBadge = "Live"
+stats = "{{connected}} connected · {{processed}} PDFs processed"
+title = "PDF Processor"
+
+[portal.processorFlow.lens]
+ariaLabel = "View mode"
+flow = "Flow"
+sankey = "Sankey"
+
+[portal.processorFlow.outcomes]
+count = "{{n}} · 24h"
+failed = "Failed"
+heading = "Outcomes"
+success = "Delivered"
+
+[portal.processorFlow.policies]
+activeCount = "{{n}} active"
+count = "{{n}} · 24h"
+heading = "Policies"
+setUp = "Set up"
+soon = "Soon"
+
+[portal.processorFlow.sankey]
+waist = "Policies · {{n}} active"
+
+[portal.processorFlow.sankey.empty]
+description = "Connect a source and switch on a policy to watch documents flow through the processor."
+title = "No flow yet"
+
+[portal.processorFlow.sources]
+comingSoonTag = "Connect"
+editor = "Stirling PDF Editor"
+heading = "Sources"
+perDay = "{{n}} / 24h"
+
+[portal.processorFlow.sources.comingSoon]
+apiMcp = "API · MCP"
+cloud = "Drive · Box · S3"
+email = "Email intake"
+
 [portal.procurement]
-reset = "重設採購（demo）"
 subtitle = "讓您的團隊完成評估、簽約並導入。所有文件集中在一處。"
 title = "採購"
 
@@ -7598,23 +7621,42 @@ title = "檢閱您的企業協議"
 
 [portal.procurement.builder]
 addons = "附加項目"
+addressLine1 = "Address line 1"
+addressLine1Placeholder = "500 Howard St"
+addressLine2 = "Address line 2"
+addressLine2Placeholder = "Suite, floor, building"
 back = "返回"
 businessName = "企業名稱"
 businessNamePlaceholder = "您的公司"
+city = "City"
+cityPlaceholder = "San Francisco"
+contactEmail = "Contact email"
+contactEmailPlaceholder = "jane@acme.com"
+contactName = "Contact name"
+contactNamePlaceholder = "Jane Doe"
 continue = "繼續"
-country = "國家/地區"
-countryEuro = "歐元區 (EUR €)"
-countryUK = "英國 (GBP £)"
-countryUS = "美國 (USD $)"
 eula = "我已閱讀並同意 Stirling Enterprise EULA。它規範由此報價產生的協議。"
 generate = "產生報價"
 included = "已包含"
 indemnification = "IP 賠償保障"
 indemnificationSub = "我們會依 EULA 為符合資格的 IP 索賠進行抗辯"
-offlineLicense = "離線 / air-gapped 授權"
-offlineLicenseSub = "供 air-gapped 自架執行個體使用的可下載授權檔"
+pdfSize = "PDF size"
+poNumber = "PO number"
+poNumberPlaceholder = "Optional"
+postalCode = "Postal code"
+postalCodePlaceholder = "94105"
+posture = "Governance"
+posture_count = "~{{count}} policies"
+posture_essentials = "Essentials"
+posture_essentialsSub = "Classification + Sharing — the defaults"
+posture_governed = "Governed"
+posture_governedSub = "Adds Security and Routing"
+posture_regulated = "Regulated"
+posture_regulatedSub = "Every category — Compliance, Retention, Ingestion"
 qbr = "季度業務檢討"
 qbrSub = "您的 SE 每季檢視使用情況與 roadmap"
+region = "State / region"
+regionPlaceholder = "California"
 running = "{{annual}} / 年 · {{years}} 年 {{tcv}}"
 s1Sub = "您的團隊，以及您預期每年處理的 PDFs。"
 s1Title = "您會處理多少量？"
@@ -7623,6 +7665,12 @@ s2Title = "承諾與服務"
 s3Sub = "用於報價及其產生的協議。"
 s3Title = "您的詳細資料"
 serviceLevel = "服務等級"
+size_compact = "Compact"
+size_compactSub = "Mostly text, under 1 MB"
+size_heavy = "Heavy"
+size_heavySub = "Scanned or image-heavy, 5 MB+"
+size_standard = "Standard"
+size_standardSub = "Mixed text and images, 1 to 5 MB"
 slDedicated = "專屬"
 slDedicatedSub = "4 個工作小時 · 專屬客戶經理 · +30%"
 slPriority = "優先"
@@ -7630,6 +7678,8 @@ slPrioritySub = "同一工作日 · 指定 CSM · +15%"
 slStandard = "標準"
 slStandardSub = "下一個工作日 · 共用 CSM · 已包含"
 stepOf = "第 {{n}} 步，共 {{total}} 步"
+taxId = "VAT / Tax ID"
+taxIdPlaceholder = "Optional"
 term = "期限"
 termDiscount = "已套用 {{pct}}% 多年承諾折扣"
 title = "建立您的報價"
@@ -7665,14 +7715,13 @@ title = "發生錯誤"
 
 [portal.procurement.hero]
 company = "您的企業採購案"
-ctaAgreement = "檢閱並簽署協議"
 ctaLive = "您已上線"
 ctaPayment = "新增付款"
 ctaQuote = "檢閱您的報價"
 ctaTrial = "建立您的報價"
 eyebrow = "企業採購"
 inviteTeammates = "邀請隊友"
-keyDocs = "重要文件"
+licenseKey = "Licence key"
 nextStep = "下一步：{{action}}"
 notStarted = "尚未開始"
 open = "開啟採購"
@@ -7727,6 +7776,9 @@ downloadError = "目前尚無法產生離線授權檔 — 請稍後再試。"
 downloadOffline = "下載離線授權 (.lic)"
 hint = "將此金鑰貼到自架執行個體以啟用，或保留作為記錄。請妥善保管。"
 label = "您的授權金鑰"
+subtitle = "Activate a self-hosted instance with this key, or keep it for your records."
+title = "Your licence key"
+trialFileHint = "This is your trial licence file. Once your agreement is in place, come back and download it again — unlike the online licence key, the .lic file won't update on its own."
 
 [portal.procurement.link]
 cta = "連結帳戶"
@@ -7746,16 +7798,9 @@ talkToSales = "聯絡業務"
 title = "採購流程會隨 Enterprise 開啟"
 
 [portal.procurement.milestone]
-accept = "接受並繼續"
-description = "下載 PDF 與您的團隊分享，準備好時回來接受，或進行變更。"
 download = "下載 PDF"
 downloadError = "目前尚無法下載報價 PDF — 請稍後再試。"
 edit = "編輯報價"
-eyebrow = "報價 {{number}}"
-perYear = " / 年"
-preparedFor = "為 {{company}} 準備"
-tcv = "{{value}} 總合約價值"
-title = "您的報價已準備就緒"
 
 [portal.procurement.modal]
 cancel = "取消"
@@ -7782,7 +7827,6 @@ uploadTitle = "上傳您的採購單"
 [portal.procurement.payment]
 description = "您的報價已被接受，授權也已啟用 — 您的團隊可以立即開始。準備好時支付第一張發票；您可以在這裡付款或下載，不需要 email。"
 downloadInvoice = "下載發票"
-simulate = "模擬已收到付款（demo）"
 title = "訂閱已建立"
 viewInvoice = "檢視並支付發票"
 
@@ -7791,6 +7835,21 @@ fallback = "無法載入排程工具。"
 fallbackLink = "在新分頁開啟排程"
 subtitle = "您的解決方案工程師會帶領您的團隊完成推出流程。請選擇適合您的時間。"
 title = "安排通話"
+
+[portal.procurement.setup]
+airgap = "Air-gapped"
+airgapSub = "Fully offline, isolated network. Includes a downloadable licence file."
+cloud = "Cloud"
+cloudSub = "Fully managed by Stirling. Nothing for you to run."
+deployment = "Where will you run Stirling?"
+seats = "Team size"
+seatsHint = "Roughly how many people will use it. You can refine this when you build your quote."
+seatsPlaceholder = "e.g. 250"
+selfhost = "Self-hosted"
+selfhostSub = "Run it in your own cloud or data centre."
+start = "Start trial"
+subtitle = "Tell us how you plan to run Stirling so we can tailor your trial and quote. No card required."
+title = "Set up your trial"
 
 [portal.procurement.status]
 action = "需要動作"
@@ -7838,26 +7897,11 @@ admin = "管理員"
 [portal.settings.sections]
 account-link = "帳戶連結"
 
-[portal.shell.header]
-accountFallback = "帳戶"
-accountMenu = "帳戶選單"
-darkMode = "深色模式"
-lightMode = "淺色模式"
-search = "搜尋"
-searchPlaceholder = "搜尋…"
-signOut = "登出"
-switchToDark = "切換至深色主題"
-switchToLight = "切換至淺色主題"
-
 [portal.shell.sidebar]
 appEditor = "編輯器"
 appProcessor = "處理器"
 brandSuffix = "Stirling Processor"
-docsCount = "{{docs}} 份文件"
 linkAccount = "連結 Stirling 帳戶"
-planEditor = "Editor 方案"
-planEnterprise = "Enterprise 方案"
-planProcessor = "Processor 方案"
 primaryNav = "主要導覽"
 switchApp = "切換應用程式"
 
@@ -7866,29 +7910,23 @@ subtitle = "可重複使用的輸入連線，將文件送入 Stirling。設定�
 title = "來源"
 
 [portal.sources.actions]
-agentBuilder = "Agent Builder"
 connectSource = "連接來源"
+
+[portal.sources.builder]
+back = "Back to sources"
+cancel = "Cancel"
+create = "Create source"
+createTitle = "Connect a source"
+delete = "Delete"
+editTitle = "Edit source"
+enabled = "Enabled"
+save = "Save changes"
 
 [portal.sources.delete]
 body = "刪除「{{name}}」？此操作無法復原。參照它的政策需要更新。"
 cancel = "取消"
 confirm = "刪除"
 title = "刪除來源？"
-
-[portal.sources.detail]
-closeAriaLabel = "關閉詳細資料"
-delete = "刪除來源"
-docs24h = "過去 24 小時"
-docs30d = "過去 30 天"
-docsTotal = "總共看見"
-docsTrend = "過去 30 天的文件"
-documents = "文件"
-edit = "編輯"
-notReferenced = "未被任何政策參照，因此可以安全刪除。"
-pause = "暫停"
-resume = "繼續"
-subtitle = "{{type}} · {{status}}"
-usedBy = "使用者"
 
 [portal.sources.empty]
 description = "連接資料夾（雲端儲存即將推出），讓您的政策有地方擷取文件。"
@@ -7905,12 +7943,19 @@ disabled = "已停用"
 unused = "未使用"
 
 [portal.sources.table]
+documents = "Documents"
 source = "來源"
 status = "狀態"
 usedBy = "政策"
 
+[portal.sources.tabs]
+connections = "Connections"
+sources = "Sources"
+
 [portal.sources.types.editor]
+description = "Documents your team has processed in the editor, across policy and AI runs."
 label = "編輯器"
+noPolicies = "No policies run from the editor yet."
 
 [portal.sources.types.folder]
 description = "監看伺服器上的目錄以取得新文件。"
@@ -7943,25 +7988,58 @@ label = "資料夾深度"
 all = "包含子資料夾"
 top = "僅最上層"
 
+[portal.sources.types.s3]
+description = "Pull documents from an Amazon S3 or S3-compatible bucket."
+label = "Amazon S3"
+
+[portal.sources.types.s3.fields.accessKeyId]
+label = "Access key ID"
+
+[portal.sources.types.s3.fields.bucket]
+label = "Bucket"
+placeholder = "my-company-inbox"
+
+[portal.sources.types.s3.fields.connection]
+helperText = "The stored connection holding the bucket and credentials. Reused by every source and pipeline output that references it."
+label = "Connection"
+
+[portal.sources.types.s3.fields.endpoint]
+helperText = "Leave blank for Amazon S3. Set to use an S3-compatible service such as MinIO."
+label = "Custom endpoint"
+placeholder = "https://s3.example.com"
+
+[portal.sources.types.s3.fields.mode]
+helperText = "Consume removes each object from the bucket once every policy has processed it."
+label = "Read mode"
+
+[portal.sources.types.s3.fields.mode.options]
+consume = "Consume: process each object once"
+snapshot = "Snapshot: re-read the bucket every run"
+
+[portal.sources.types.s3.fields.prefix]
+helperText = "Only objects whose keys start with this prefix are processed."
+label = "Key prefix"
+placeholder = "incoming/"
+
+[portal.sources.types.s3.fields.region]
+label = "Region"
+placeholder = "us-east-1"
+
+[portal.sources.types.s3.fields.secretAccessKey]
+label = "Secret access key"
+
 [portal.sources.types.unknown]
 label = "來源"
 
 [portal.sources.wizard]
-back = "返回"
-cancel = "取消"
-continue = "繼續"
-editTitle = "編輯來源"
 name = "名稱"
 namePlaceholder = "例如 理賠收件"
-save = "儲存變更"
-subtitle = "第 {{current}} 步，共 {{total}} 步 · {{label}}"
-title = "連接來源"
 type = "類型"
 
-[portal.sources.wizard.steps]
-chooseType = "選擇類型"
-configure = "設定"
-review = "檢閱並連接"
+[portal.tier]
+enterprise = "Enterprise plan"
+free = "Editor plan"
+pro = "Processor plan"
 
 [portal.usage]
 managePayment = "管理付款"
@@ -8021,16 +8099,17 @@ summary = "擁有團隊 — 管理其成員資源和共用設定。"
 2 = "透過預設政策取得 portal 存取權"
 3 = "成員可執行的一切"
 
+[portal.users.seats]
+limited = "{{used}} / {{limit}}"
+unlimited = "{{used}} · Unlimited"
+
 [portal.welcome]
 ariaLabel = "歡迎使用 Stirling PDF"
-badge = "Open-source"
-installEditor = "安裝編輯器"
-inviteTeammates = "邀請隊友"
+install = "Install the editor"
+invite = "Invite teammates"
 openInBrowser = "在瀏覽器中開啟"
-perks = "永久免費 · 可自架"
-subtitle = "全球最安全的 PDF Editor 對各種規模的團隊免費。包含 60+ PDF 操作和 SSO。"
-title = "歡迎使用"
-titleAccent = "Stirling PDF"
+productName = "PDF Editor"
+stats = "30M downloads · 60+ PDF operations · Free forever"
 
 [printFile]
 title = "列印檔案"
@@ -8817,9 +8896,18 @@ languageDescription = "選擇顯示語言"
 logout = "登出"
 setAsDefault = "設為預設"
 theme = "主題"
+themeAccent = "Accent colour"
+themeAccentCustom = "Custom colour"
+themeAccentCustomHint = "Custom (defaults recommended)"
+themeAccentDark = "Dark mode accent colour"
+themeAccentDefault = "Default"
+themeAccentDefaultHint = "Default theme (recommended)"
+themeAccentDescription = "Buttons, links and highlights follow it, and it subtly tints the app. Light and dark each have their own. System uses whichever is active."
+themeAccentLight = "Light mode accent colour"
 themeDark = "深色"
 themeDescription = "在淺色與深色模式間切換"
 themeLight = "淺色"
+themeReset = "Restore theme to default"
 themeSystem = "System"
 title = "一般"
 user = "使用者"
@@ -8832,6 +8920,12 @@ dismiss = "關閉"
 intro = "為您的組織啟用使用者驗證、團隊管理與工作區功能。"
 learnMore = "在說明文件中了解更多"
 title = "系統管理員專用"
+
+[settings.general.loginLanding]
+description = "Choose which app opens when you sign in to Stirling Cloud."
+editor = "Editor"
+processor = "Processor"
+title = "After signing in"
 
 [settings.general.mode]
 fullscreen = "全螢幕"
@@ -9040,6 +9134,11 @@ connections = "連線"
 security = "安全性"
 telegram = "Telegram"
 title = "安全性與身分驗證"
+
+[settings.signOut]
+confirm = "Are you sure you want to sign out?"
+submit = "Sign out"
+title = "Sign out"
 
 [settings.team]
 title = "團隊"
@@ -9657,6 +9756,9 @@ uploadButton = "上傳至伺服器"
 title = "Stirling-PDF Survey"
 
 [swagger]
+clickHere = "click here"
+fallback = "If it didn't open automatically,"
+opening = "Opening Swagger UI in a new tab..."
 tags = "api,文件,swagger,端點,開發"
 title = "API 文件"
 
@@ -9950,15 +10052,30 @@ title = "使用者"
 you = "（您）"
 
 [users.action]
+cancelInvite = "Cancel invitation"
 deleteTeam = "刪除團隊"
 disableMfa = "重設 MFA"
 move = "移至團隊"
 reinstate = "恢復"
 remove = "從組織移除"
+removeTeam = "Remove from team"
 rename = "重新命名團隊"
 resetPw = "重設密碼"
 suspend = "停權"
 unlock = "解鎖帳戶"
+
+[users.activity]
+daysAgo = "{{count}}d ago"
+hoursAgo = "{{count}}h ago"
+justNow = "Just now"
+minutesAgo = "{{count}}m ago"
+monthsAgo_one = "{{count}} month ago"
+monthsAgo_other = "{{count}} months ago"
+never = "Never"
+weeksAgo_one = "{{count}} week ago"
+weeksAgo_other = "{{count}} weeks ago"
+yearsAgo_one = "{{count}} year ago"
+yearsAgo_other = "{{count}} years ago"
 
 [users.cap]
 addProcessor = "+ Processor"
@@ -9967,11 +10084,14 @@ editor = "編輯器"
 processor = "處理器"
 
 [users.confirm]
+cancelInviteBody = "Cancel the invitation to {{email}}? They won't be able to join with the current link."
+cancelInviteTitle = "Cancel invitation"
 deleteTeamBody = "刪除 {{name}} 團隊？團隊必須先為空 — 請將其成員移至另一個團隊，且不能仍擁有任何整合設定。"
 deleteTeamTitle = "刪除團隊"
 disableMfaBody = "移除 {{name}} 的 MFA 註冊？若有要求，他們下次登入時會再次設定。"
 disableMfaTitle = "重設 MFA"
 removeBody = "永久從組織移除 {{name}}？此操作無法復原。"
+removeTeamBody = "Remove {{name}} from the team? They keep their account but lose access to this team's resources."
 removeTitle = "移除成員"
 
 [users.empty]
@@ -10021,6 +10141,16 @@ title = "邀請成員"
 username = "使用者名稱"
 usernameError = "使用者名稱至少需 3 個字元"
 usernamePlaceholder = "jsmith"
+
+[users.invites]
+by = "Invited by {{who}}"
+cancel = "Cancel"
+count = "{{count}} pending"
+desc = "Invited people who haven't joined yet. They hold a seat until they accept."
+expiresInDays_one = "Expires in {{count}} day"
+expiresInDays_other = "Expires in {{count}} days"
+expiresToday = "Expires today"
+title = "Pending invitations"
 
 [users.loadError]
 description = "連線至後端時發生錯誤，或您沒有存取權限。請再試一次。"
@@ -10212,9 +10342,11 @@ title = "附件"
 
 [viewer.bookmarks]
 bookmarkTitle = "書籤標題"
+bookmarkTitleRequired = "Bookmark title is required"
 closeSidebar = "關閉書籤側邊欄"
 collapseAll = "收合所有書籤"
 expandAll = "展開所有書籤"
+searchPlaceholder = "Search bookmarks"
 
 [viewer.comments]
 addComment = "新增評論"
