@@ -120,9 +120,6 @@ jobs:
           mode: gradle
           workspace: ${{ env.BORINGCACHE_WORKSPACE }}
           cache-tag: stirling-gradle
-          entries: |
-            stirling-gradle-wrapper:~/.gradle/wrapper
-            stirling-gradle-modules:~/.gradle/caches/modules-2
           gradle-home: ~/.gradle
           enable-build-cache: "true"
           fail-on-cache-error: "true"
@@ -187,9 +184,6 @@ jobs:
           mode: gradle
           workspace: ${{ env.BORINGCACHE_WORKSPACE }}
           cache-tag: stirling-gradle
-          entries: |
-            stirling-gradle-wrapper:~/.gradle/wrapper
-            stirling-gradle-modules:~/.gradle/caches/modules-2
           gradle-home: ~/.gradle
           enable-build-cache: "true"
           save-always: "true"
