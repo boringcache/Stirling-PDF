@@ -1,0 +1,113 @@
+name: BoringCache native Docker proof
+
+on:
+  push:
+    branches:
+      - pr/native-boringcache-proof
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: boringcache-native-proof
+  cancel-in-progress: true
+
+env:
+  IMAGE: ghcr.io/boringcache/stirling-pdf-native-proof
+
+jobs:
+  build:
+    name: ${{ matrix.arch }} native 4-core build
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: amd64
+            platform: linux/amd64
+            runner: ubuntu-latest
+            cli_platform: linux-amd64
+          - arch: arm64
+            platform: linux/arm64
+            runner: ubuntu-24.04-arm
+            cli_platform: linux-arm64
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 90
+    env:
+      BORINGCACHE_RESTORE_TOKEN: ${{ secrets.BORINGCACHE_RESTORE_TOKEN }}
+      BORINGCACHE_SAVE_TOKEN: ${{ secrets.BORINGCACHE_SAVE_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Verify native architecture
+        env:
+          EXPECTED_ARCH: ${{ matrix.arch }}
+        run: |
+          set -euo pipefail
+          actual="$(uname -m)"
+          case "${EXPECTED_ARCH}:${actual}" in
+            amd64:x86_64|arm64:aarch64|arm64:arm64) ;;
+            *)
+              echo "Expected ${EXPECTED_ARCH}, got ${actual}" >&2
+              exit 1
+              ;;
+          esac
+
+      - name: Log in to GHCR
+        uses: docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+
+      - name: Build and push
+        uses: boringcache/one@bd5597d3b41b5b52641c65787dcd1711fb1f675b # v1.13.97
+        with:
+          setup: none
+          mode: docker
+          workspace: boringcache/docker-cache-proof
+          cli-platform: ${{ matrix.cli_platform }}
+          cache-runtime: "false"
+          cache-backend: boringcache
+          cache-tag: stirling-native-${{ matrix.arch }}
+          context: .
+          dockerfile: docker/embedded/Dockerfile
+          image: ${{ env.IMAGE }}
+          tags: run-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.arch }}
+          build-args: VERSION_TAG=cache-proof
+          platforms: ${{ matrix.platform }}
+          push: "true"
+          provenance: "true"
+          sbom: "true"
+          fail-on-cache-error: "true"
+          verify: wait
+          diagnostics: summary
+
+  manifest:
+    name: Merge and verify manifest
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Log in to GHCR
+        uses: docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+
+      - name: Merge platform images
+        run: |
+          set -euo pipefail
+          prefix="${IMAGE}:run-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          docker buildx imagetools create \
+            --tag "${prefix}" \
+            "${prefix}-amd64" \
+            "${prefix}-arm64"
+
+          inspect="$(docker buildx imagetools inspect "${prefix}")"
+          printf '%s\n' "$inspect"
+          grep -q 'linux/amd64' <<< "$inspect"
+          grep -q 'linux/arm64' <<< "$inspect"
