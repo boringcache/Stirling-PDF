@@ -50,6 +50,27 @@ gha_endgroup() {
     if is_gha; then echo "::endgroup::"; fi
 }
 
+docker_buildx_build() {
+    local cache_tag="$1"
+    shift
+
+    if [ "${BORINGCACHE_DOCKER_ENABLED:-}" = "true" ]; then
+        local -a access_mode=(--read-only)
+        if [ -n "${BORINGCACHE_SAVE_TOKEN:-}" ]; then
+            access_mode=(--write)
+        fi
+        boringcache docker \
+            --workspace "$BORINGCACHE_WORKSPACE" \
+            --tag "$cache_tag" \
+            --tool-cache "$BORINGCACHE_DOCKER_TOOL_CACHE" \
+            --fail-on-cache-error \
+            "${access_mode[@]}" \
+            -- docker buildx build "$@"
+    else
+        docker buildx build "$@"
+    fi
+}
+
 start_test_timer() {
     local test_name=$1
     test_start_times["$test_name"]=$SECONDS
@@ -726,13 +747,15 @@ main() {
 
         # Build Ultra-Lite image with embedded frontend (matching docker-compose-latest-ultra-lite.yml)
         echo "Building ultra-lite image for tests that require it..."
-        if [ -n "${ACTIONS_RUNTIME_TOKEN}" ] && { [ -n "${ACTIONS_RESULTS_URL}" ] || [ -n "${ACTIONS_CACHE_URL}" ]; }; then
+        if [ "${BORINGCACHE_DOCKER_ENABLED:-}" = "true" ]; then
+            DOCKER_CACHE_ARGS_ULTRA_LITE=""
+        elif [ -n "${ACTIONS_RUNTIME_TOKEN}" ] && { [ -n "${ACTIONS_RESULTS_URL}" ] || [ -n "${ACTIONS_CACHE_URL}" ]; }; then
             DOCKER_CACHE_ARGS_ULTRA_LITE="--cache-from type=gha,scope=stirling-pdf-ultra-lite --cache-to type=gha,mode=max,scope=stirling-pdf-ultra-lite"
         else
             DOCKER_CACHE_ARGS_ULTRA_LITE=""
         fi
         local ultra_lite_build_log="$REPORT_DIR/Build-Ultra-Lite-Docker.build.log"
-        if ! docker buildx build --build-arg VERSION_TAG=alpha \
+        if ! docker_buildx_build stirling-compose-ultra-lite --build-arg VERSION_TAG=alpha \
             -t docker.stirlingpdf.com/stirlingtools/stirling-pdf:ultra-lite \
             -f ./docker/embedded/Dockerfile.ultra-lite \
             --load \
@@ -812,13 +835,15 @@ main() {
 
         # Build Fat (Security) image with embedded frontend (matching all 'fat' compose files)
         echo "Building fat image for tests that require it..."
-        if [ -n "${ACTIONS_RUNTIME_TOKEN}" ] && { [ -n "${ACTIONS_RESULTS_URL}" ] || [ -n "${ACTIONS_CACHE_URL}" ]; }; then
+        if [ "${BORINGCACHE_DOCKER_ENABLED:-}" = "true" ]; then
+            DOCKER_CACHE_ARGS_FAT=""
+        elif [ -n "${ACTIONS_RUNTIME_TOKEN}" ] && { [ -n "${ACTIONS_RESULTS_URL}" ] || [ -n "${ACTIONS_CACHE_URL}" ]; }; then
             DOCKER_CACHE_ARGS_FAT="--cache-from type=gha,scope=stirling-pdf-fat --cache-to type=gha,mode=max,scope=stirling-pdf-fat"
         else
             DOCKER_CACHE_ARGS_FAT=""
         fi
         local fat_build_log="$REPORT_DIR/Build-Fat-Docker.build.log"
-        if ! docker buildx build --build-arg VERSION_TAG=alpha \
+        if ! docker_buildx_build stirling-compose-fat --build-arg VERSION_TAG=alpha \
             ${BASE_IMAGE_ARG} \
             -t docker.stirlingpdf.com/stirlingtools/stirling-pdf:fat \
             -f ./docker/embedded/Dockerfile.fat \

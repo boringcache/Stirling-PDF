@@ -64,13 +64,12 @@ jobs:
       - name: Build and push
         uses: boringcache/one@58df2c0d6884ecd5e430feeeaf7e477656864771 # v1.13.102
         with:
-          cli-version: vcli-canary-384efda77d6a
+          cli-version: vcli-canary-36dce310264e
           setup: none
           mode: docker
           workspace: ${{ env.BORINGCACHE_WORKSPACE }}
           cli-platform: ${{ matrix.cli_platform }}
           cache-runtime: "false"
-          cache-backend: boringcache
           cache-tag: stirling-native-${{ matrix.arch }}
           managed-buildkit-image: ghcr.io/boringcache/buildkit@sha256:2f6ddc6319f598180955e89e3a846b259b216458d528912c1477700670c96869
           docker-tool-cache: gradle:stirling-gradle
@@ -115,8 +114,9 @@ jobs:
         uses: go-task/setup-task@01a4adf9db2d14c1de7a560f09170b6e0df736aa # v2.1.0
 
       - name: Set up Gradle cache
-        uses: boringcache/one@bd5597d3b41b5b52641c65787dcd1711fb1f675b # v1.13.97
+        uses: boringcache/one@58df2c0d6884ecd5e430feeeaf7e477656864771 # v1.13.102
         with:
+          cli-version: vcli-canary-36dce310264e
           setup: none
           mode: gradle
           workspace: ${{ env.BORINGCACHE_WORKSPACE }}
@@ -124,6 +124,10 @@ jobs:
           cache-tag: stirling-gradle
           gradle-home: ~/.gradle
           enable-build-cache: "true"
+          entries: |
+            stirling-backend-gradle-wrapper:~/.gradle/wrapper
+            stirling-backend-gradle-modules:~/.gradle/caches/modules-2
+          save-always: "true"
           fail-on-cache-error: "true"
           verify: wait
           diagnostics: summary
@@ -161,8 +165,6 @@ jobs:
         uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
           node-version: 22
-          cache: npm
-          cache-dependency-path: frontend/package-lock.json
 
       - name: Set up JDK 25
         uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
@@ -180,8 +182,9 @@ jobs:
         uses: go-task/setup-task@01a4adf9db2d14c1de7a560f09170b6e0df736aa # v2.1.0
 
       - name: Set up Gradle cache
-        uses: boringcache/one@bd5597d3b41b5b52641c65787dcd1711fb1f675b # v1.13.97
+        uses: boringcache/one@58df2c0d6884ecd5e430feeeaf7e477656864771 # v1.13.102
         with:
+          cli-version: vcli-canary-36dce310264e
           setup: none
           mode: gradle
           workspace: ${{ env.BORINGCACHE_WORKSPACE }}
@@ -189,14 +192,19 @@ jobs:
           cache-tag: stirling-gradle
           gradle-home: ~/.gradle
           enable-build-cache: "true"
+          entries: |
+            stirling-tauri-gradle-wrapper:~/.gradle/wrapper
+            stirling-tauri-gradle-modules:~/.gradle/caches/modules-2
+            stirling-tauri-npm:~/.npm
           save-always: "true"
           fail-on-cache-error: "true"
           verify: wait
           diagnostics: summary
 
       - name: Set up Rust cache
-        uses: boringcache/one@bd5597d3b41b5b52641c65787dcd1711fb1f675b # v1.13.97
+        uses: boringcache/one@58df2c0d6884ecd5e430feeeaf7e477656864771 # v1.13.102
         with:
+          cli-version: vcli-canary-36dce310264e
           setup: none
           mode: rust-sccache
           workspace: ${{ env.BORINGCACHE_WORKSPACE }}
