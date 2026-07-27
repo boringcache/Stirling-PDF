@@ -16,7 +16,6 @@ concurrency:
 
 env:
   IMAGE: ghcr.io/boringcache/stirling-pdf-fork-proof
-  BORINGCACHE_WORKSPACE: stirling-tools/stirling-pdf
 
 jobs:
   build:
@@ -62,17 +61,14 @@ jobs:
           password: ${{ github.token }}
 
       - name: Build and push
-        uses: boringcache/one@58df2c0d6884ecd5e430feeeaf7e477656864771 # v1.13.102
+        uses: boringcache/one@f21a85871dfdf6499499a17764a5cee0a7f08f92 # one-canary-93be2b89d132
         with:
-          cli-version: vcli-canary-36dce310264e
+          cli-version: vcli-canary-93be2b89d132
+          trust-policy: auto
           setup: none
           mode: docker
-          workspace: ${{ env.BORINGCACHE_WORKSPACE }}
           cli-platform: ${{ matrix.cli_platform }}
-          cache-runtime: "false"
-          cache-tag: stirling-native-${{ matrix.arch }}
-          managed-buildkit-image: ghcr.io/boringcache/buildkit@sha256:2f6ddc6319f598180955e89e3a846b259b216458d528912c1477700670c96869
-          docker-tool-cache: gradle:stirling-gradle
+          docker-tool-cache: gradle
           context: .
           dockerfile: docker/embedded/Dockerfile
           image: ${{ env.IMAGE }}
@@ -113,21 +109,28 @@ jobs:
       - name: Set up Task
         uses: go-task/setup-task@01a4adf9db2d14c1de7a560f09170b6e0df736aa # v2.1.0
 
-      - name: Set up Gradle cache
-        uses: boringcache/one@58df2c0d6884ecd5e430feeeaf7e477656864771 # v1.13.102
+      - name: Restore build dependencies
+        uses: boringcache/one@f21a85871dfdf6499499a17764a5cee0a7f08f92 # one-canary-93be2b89d132
         with:
-          cli-version: vcli-canary-36dce310264e
+          cli-version: vcli-canary-93be2b89d132
+          trust-policy: auto
+          setup: none
+          mode: archive
+          cache-profiles: backend-dependencies
+          save-always: "true"
+          fail-on-cache-error: "true"
+          verify: wait
+          diagnostics: summary
+
+      - name: Set up Gradle cache
+        uses: boringcache/one@f21a85871dfdf6499499a17764a5cee0a7f08f92 # one-canary-93be2b89d132
+        with:
+          cli-version: vcli-canary-93be2b89d132
+          trust-policy: auto
           setup: none
           mode: gradle
-          workspace: ${{ env.BORINGCACHE_WORKSPACE }}
-          cache-runtime: "false"
-          cache-tag: stirling-gradle
           gradle-home: ~/.gradle
           enable-build-cache: "true"
-          entries: |
-            stirling-backend-gradle-wrapper:~/.gradle/wrapper
-            stirling-backend-gradle-modules:~/.gradle/caches/modules-2
-          save-always: "true"
           fail-on-cache-error: "true"
           verify: wait
           diagnostics: summary
@@ -182,41 +185,43 @@ jobs:
       - name: Set up Task
         uses: go-task/setup-task@01a4adf9db2d14c1de7a560f09170b6e0df736aa # v2.1.0
 
-      - name: Set up Gradle cache
-        uses: boringcache/one@58df2c0d6884ecd5e430feeeaf7e477656864771 # v1.13.102
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@4be9e76fd7c4901c61fb841f559994984270fce7 # stable
+
+      - name: Restore build dependencies
+        uses: boringcache/one@f21a85871dfdf6499499a17764a5cee0a7f08f92 # one-canary-93be2b89d132
         with:
-          cli-version: vcli-canary-36dce310264e
+          cli-version: vcli-canary-93be2b89d132
+          trust-policy: auto
           setup: none
-          mode: gradle
-          workspace: ${{ env.BORINGCACHE_WORKSPACE }}
-          cache-runtime: "false"
-          cache-tag: stirling-gradle
-          gradle-home: ~/.gradle
-          enable-build-cache: "true"
-          entries: |
-            stirling-tauri-gradle-wrapper:~/.gradle/wrapper
-            stirling-tauri-gradle-modules:~/.gradle/caches/modules-2
-            npm-cache
+          mode: archive
+          cache-profiles: tauri-dependencies
           save-always: "true"
           fail-on-cache-error: "true"
           verify: wait
           diagnostics: summary
 
-      - name: Set up Rust cache
-        uses: boringcache/one@58df2c0d6884ecd5e430feeeaf7e477656864771 # v1.13.102
+      - name: Set up Gradle cache
+        uses: boringcache/one@f21a85871dfdf6499499a17764a5cee0a7f08f92 # one-canary-93be2b89d132
         with:
-          cli-version: vcli-canary-36dce310264e
+          cli-version: vcli-canary-93be2b89d132
+          trust-policy: auto
           setup: none
-          mode: rust-sccache
-          workspace: ${{ env.BORINGCACHE_WORKSPACE }}
-          cache-runtime: "false"
+          mode: gradle
+          gradle-home: ~/.gradle
+          enable-build-cache: "true"
+          fail-on-cache-error: "true"
+          verify: wait
+          diagnostics: summary
+
+      - name: Set up Rust cache
+        uses: boringcache/one@f21a85871dfdf6499499a17764a5cee0a7f08f92 # one-canary-93be2b89d132
+        with:
+          cli-version: vcli-canary-93be2b89d132
+          trust-policy: auto
+          setup: none
+          mode: sccache
           working-directory: frontend/editor/src-tauri
-          cache-tag: stirling-tauri
-          rust-version: stable
-          cache-cargo: "false"
-          cache-target: "false"
-          sccache: "true"
-          sccache-mode: proxy
           save-always: "true"
           fail-on-cache-error: "true"
           verify: wait

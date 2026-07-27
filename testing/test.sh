@@ -60,7 +60,6 @@ docker_buildx_build() {
             access_mode=(--write)
         fi
         boringcache docker \
-            --workspace "$BORINGCACHE_WORKSPACE" \
             --tag "$cache_tag" \
             --tool-cache "$BORINGCACHE_DOCKER_TOOL_CACHE" \
             --fail-on-cache-error \

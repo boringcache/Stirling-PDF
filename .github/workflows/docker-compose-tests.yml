@@ -33,7 +33,6 @@ jobs:
       checks: write
     env:
       DEPOT_TOKEN: ${{ secrets.DEPOT_TOKEN }}
-      BORINGCACHE_WORKSPACE: stirling-tools/stirling-pdf
       BORINGCACHE_RESTORE_TOKEN: ${{ secrets.BORINGCACHE_RESTORE_TOKEN }}
       BORINGCACHE_SAVE_TOKEN: ${{ secrets.BORINGCACHE_SAVE_TOKEN }}
 
@@ -58,24 +57,30 @@ jobs:
           gradle-version: 9.6.1
           cache-disabled: true
 
-      - name: Set up build caches
+      - name: Restore build dependencies
         if: env.BORINGCACHE_RESTORE_TOKEN != ''
-        uses: boringcache/one@58df2c0d6884ecd5e430feeeaf7e477656864771 # v1.13.102
+        uses: boringcache/one@f21a85871dfdf6499499a17764a5cee0a7f08f92 # one-canary-93be2b89d132
         with:
-          cli-version: vcli-canary-36dce310264e
+          cli-version: vcli-canary-93be2b89d132
+          trust-policy: auto
+          setup: none
+          mode: archive
+          cache-profiles: compose-dependencies
+          save-always: "true"
+          fail-on-cache-error: "true"
+          verify: wait
+          diagnostics: summary
+
+      - name: Set up Gradle cache
+        if: env.BORINGCACHE_RESTORE_TOKEN != ''
+        uses: boringcache/one@f21a85871dfdf6499499a17764a5cee0a7f08f92 # one-canary-93be2b89d132
+        with:
+          cli-version: vcli-canary-93be2b89d132
+          trust-policy: auto
           setup: none
           mode: gradle
-          workspace: ${{ env.BORINGCACHE_WORKSPACE }}
-          cache-runtime: "false"
-          cache-tag: stirling-gradle
           gradle-home: ~/.gradle
           enable-build-cache: "true"
-          entries: |
-            stirling-compose-gradle-wrapper:~/.gradle/wrapper
-            stirling-compose-gradle-modules:~/.gradle/caches/modules-2
-            stirling-compose-pip:~/.cache/pip
-          save-on-pull-request: "true"
-          save-always: "true"
           fail-on-cache-error: "true"
           verify: wait
           diagnostics: summary
@@ -137,7 +142,7 @@ jobs:
           MAVEN_PUBLIC_URL: ${{ secrets.MAVEN_PUBLIC_URL }}
           DOCKER_BASE_CHANGED: ${{ inputs.docker-base-changed }}
           BORINGCACHE_DOCKER_ENABLED: ${{ env.BORINGCACHE_RESTORE_TOKEN != '' && inputs.docker-base-changed != 'true' && 'true' || '' }}
-          BORINGCACHE_DOCKER_TOOL_CACHE: gradle:stirling-gradle
+          BORINGCACHE_DOCKER_TOOL_CACHE: gradle
           # Tells test.sh to layer testing/compose/docker-compose-coverage.override.yml
           # over the cucumber compose so the container starts with the
           # JaCoCo agent attached via JAVA_CUSTOM_OPTS.

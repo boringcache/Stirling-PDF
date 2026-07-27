@@ -1,0 +1,36 @@
+workspace = "stirling-tools/stirling-pdf"
+
+[entries.gradle-wrapper]
+tag = "stirling-gradle-wrapper"
+path = "~/.gradle/wrapper"
+
+[entries.gradle-modules]
+tag = "stirling-gradle-modules"
+path = "~/.gradle/caches/modules-2"
+
+[entries.npm-cache]
+tag = "stirling-npm-cache"
+path = "~/.npm"
+
+[entries.pip-cache]
+tag = "stirling-pip-cache"
+path = "~/.cache/pip"
+
+[profiles.backend-dependencies]
+entries = ["gradle-wrapper", "gradle-modules"]
+
+[profiles.tauri-dependencies]
+entries = ["gradle-wrapper", "gradle-modules", "npm-cache"]
+
+[profiles.compose-dependencies]
+entries = ["gradle-wrapper", "gradle-modules", "pip-cache"]
+
+[adapters.docker]
+tag = "stirling-native"
+cache-mode = "max"
+
+[adapters.gradle]
+tag = "stirling-gradle"
+
+[adapters.sccache]
+tag = "stirling-tauri"
