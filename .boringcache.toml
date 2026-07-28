@@ -1,0 +1,4 @@
+workspace = "stirling-tools/stirling-pdf"
+
+[adapters.gradle]
+tag = "stirling-gradle"
