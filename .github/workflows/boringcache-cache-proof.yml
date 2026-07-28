@@ -49,7 +49,6 @@ jobs:
           trust-policy: auto
           gradle-home: ~/.gradle
           enable-build-cache: "true"
-          verify: wait
           diagnostics: summary
           fail-on-cache-error: "true"
 
