@@ -275,6 +275,7 @@ jobs:
     secrets: inherit
 
   dependency-review:
+    if: github.event_name != 'workflow_dispatch'
     needs: [files-changed]
     permissions:
       contents: read
