@@ -163,8 +163,9 @@ jobs:
   # Advisory: deliberately NOT in all-checks-passed. It reports on the stories a
   # branch touches so a regression is visible in review, but a browser scan is
   # too new here to block merges on. Promote it once its pass/fail proves stable.
+  # Manual runs have no reliable PR base, especially when dispatched from a fork.
   frontend-a11y:
-    if: needs.files-changed.outputs.frontend == 'true'
+    if: github.event_name != 'workflow_dispatch' && needs.files-changed.outputs.frontend == 'true'
     needs: [files-changed]
     permissions:
       contents: read

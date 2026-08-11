@@ -38,10 +38,10 @@ jobs:
 
   playwright-e2e-enterprise:
     needs: pick
-    # Skip on fork PRs / untrusted authors: they have no PREMIUM_KEY_ENTERPRISE,
-    # so the suite can't boot premium and would fail. See the header comment.
+    # Skip in fork repositories and on untrusted fork PRs: they have no
+    # PREMIUM_KEY_ENTERPRISE, so the suite can't boot premium and would fail.
     # GitHub reports the skipped reusable workflow as success.
-    if: needs.pick.outputs.is_fork != 'true'
+    if: github.repository == 'Stirling-Tools/Stirling-PDF' && needs.pick.outputs.is_fork != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
@@ -337,7 +337,8 @@ jobs:
     needs: [pick, playwright-e2e-enterprise]
     # Nightly cron + manual dispatch only (heavy build), fork-gated for the licence secret.
     if: >-
-      always() && needs.pick.outputs.is_fork != 'true'
+      always() && github.repository == 'Stirling-Tools/Stirling-PDF'
+      && needs.pick.outputs.is_fork != 'true'
       && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
     runs-on: ${{ needs.pick.outputs.is_fork == 'true' && 'ubuntu-latest' || format('depot-ubuntu-24.04-{0}', inputs.depot_cores || '8') }}
     timeout-minutes: 60
