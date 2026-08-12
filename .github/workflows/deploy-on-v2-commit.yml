@@ -97,7 +97,7 @@ jobs:
       - name: Set up frontend Docker cache with BoringCache
         id: boringcache-frontend
         if: steps.check-frontend.outputs.exists == 'false' && env.BORINGCACHE_ENABLED == 'true'
-        uses: boringcache/one@ab52a39d3d7358c22b359a6ffbf86cf74be9bf56 # v1.18.1
+        uses: boringcache/one@1d01e5dbf19ce259f921aa353d5e3e4ac5f942e4 # v1.19.0
         with:
           trust-policy: auto
           setup: none
@@ -129,7 +129,7 @@ jobs:
       - name: Set up backend Docker cache with BoringCache
         id: boringcache-backend
         if: steps.check-backend.outputs.exists == 'false' && env.BORINGCACHE_ENABLED == 'true'
-        uses: boringcache/one@ab52a39d3d7358c22b359a6ffbf86cf74be9bf56 # v1.18.1
+        uses: boringcache/one@1d01e5dbf19ce259f921aa353d5e3e4ac5f942e4 # v1.19.0
         with:
           trust-policy: auto
           setup: none

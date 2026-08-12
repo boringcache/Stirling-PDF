@@ -58,7 +58,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: Restore build dependencies with BoringCache
         if: env.BORINGCACHE_ENABLED == 'true'
-        uses: boringcache/one@ab52a39d3d7358c22b359a6ffbf86cf74be9bf56 # v1.18.1
+        uses: boringcache/one@1d01e5dbf19ce259f921aa353d5e3e4ac5f942e4 # v1.19.0
         with:
           trust-policy: auto
           setup: none
@@ -70,7 +70,7 @@ jobs:
           BORINGCACHE_SAVE_TOKEN: ${{ github.event_name != 'pull_request' && secrets.BORINGCACHE_SAVE_TOKEN || '' }}
       - name: Configure Gradle build cache with BoringCache
         if: env.BORINGCACHE_ENABLED == 'true'
-        uses: boringcache/one@ab52a39d3d7358c22b359a6ffbf86cf74be9bf56 # v1.18.1
+        uses: boringcache/one@1d01e5dbf19ce259f921aa353d5e3e4ac5f942e4 # v1.19.0
         with:
           trust-policy: auto
           setup: none
@@ -358,7 +358,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: Restore uv dependencies with BoringCache
         if: env.BORINGCACHE_ENABLED == 'true'
-        uses: boringcache/one@ab52a39d3d7358c22b359a6ffbf86cf74be9bf56 # v1.18.1
+        uses: boringcache/one@1d01e5dbf19ce259f921aa353d5e3e4ac5f942e4 # v1.19.0
         with:
           trust-policy: auto
           setup: none
