@@ -8,7 +8,7 @@
 # Consider using a hashable URL like https://github.com/jazzband/pip-tools/archive/SOMECOMMIT.zip
 brotli @ git+https://github.com/google/brotli.git@028fb5a23661f123017c060daa546b55cf4bde29
     # via
-    #   -r .github/scripts/requirements_dev.in
+    #   -r requirements_dev.in
     #   fonttools
 cffi==2.1.0 \
     --hash=sha256:02cb7ff33ded4f1532476731f89ede53e2e488a8e6205515a82144246ffa7dcc \
@@ -274,11 +274,11 @@ opencv-python-headless==5.0.0.93 \
     --hash=sha256:b82f9831daab90b725c7c1ee1b36cb5732c367096ac76d119e64e14eb70d5f3c \
     --hash=sha256:c6bcd96b185975ea240d22cfdb15a1f6d080cc95264cfbe2621f21bb144d89b9 \
     --hash=sha256:ed709fdf9aa0bd1f2ed8549e71d19449b03a675bb581eb292285f6861953be37
-    # via -r .github/scripts/requirements_dev.in
+    # via -r requirements_dev.in
 pdf2image==1.17.0 \
     --hash=sha256:eaa959bc116b420dd7ec415fcae49b98100dda3dd18cd2fdfa86d09f112f6d57 \
     --hash=sha256:ecdd58d7afb810dffe21ef2b1bbc057ef434dabbac6c33778a38a3f7744a27e2
-    # via -r .github/scripts/requirements_dev.in
+    # via -r requirements_dev.in
 pillow==12.3.0 \
     --hash=sha256:00808c5e14ef63ac5161091d242999076604ff74b883423a11e5d7bbb38bf756 \
     --hash=sha256:04f01d28a6aaff387bf842a13be313df23ba0597a44f1a976c9feb3c6ff4711a \
@@ -368,7 +368,7 @@ pillow==12.3.0 \
     --hash=sha256:fe3cca2e4e8a592be0f269a1ca4835c25199d9f3ce815c8491048f785b0a0198 \
     --hash=sha256:ffd0c5368496f41b0944be820fcb7a838aa6e623d250b01acf2643939c3f99d7
     # via
-    #   -r .github/scripts/requirements_dev.in
+    #   -r requirements_dev.in
     #   pdf2image
     #   weasyprint
 platformdirs==4.10.0 \
@@ -380,7 +380,7 @@ platformdirs==4.10.0 \
 pre-commit==4.6.0 \
     --hash=sha256:718d2208cef53fdc38206e40524a6d4d9576d103eb16f0fec11c875e7716e9d9 \
     --hash=sha256:e2cf246f7299edcabcf15f9b0571fdce06058527f0a06535068a86d38089f29b
-    # via -r .github/scripts/requirements_dev.in
+    # via -r requirements_dev.in
 pycparser==3.0 \
     --hash=sha256:600f49d217304a5902ac3c37e1281c9fe94e4d0489de643a9504c5cdfdfc6b29 \
     --hash=sha256:b727414169a36b7d524c1c3e31839a521725078d7b2ff038656844266160a992
@@ -485,15 +485,15 @@ tinyhtml5==2.1.0 \
 unoserver==3.7 \
     --hash=sha256:b05f9578506ac7374ae1b314c3a79528636c542ac78220a9ce99110584ca424b \
     --hash=sha256:fc44e6808071c9d2957e705ecf1742cea8a582aa5d5cc23babf36bb332ec6e8e
-    # via -r .github/scripts/requirements_dev.in
+    # via -r requirements_dev.in
 virtualenv==21.6.1 \
     --hash=sha256:15f978b7cd329f24855ff4a0c4b4899cc7678589f49adbdcbbb4d3232e641128 \
     --hash=sha256:afe991df855715a2b2f60edfcc0107ef95a79fdfd8cb4cdaa71603d1c12e463b
     # via pre-commit
-weasyprint==69.0 \
-    --hash=sha256:475951cfd917014de6d4d005caff48c6aa867e7e42b80cd5b16a0484a1609ee6 \
-    --hash=sha256:a7a32f39ca16bd82ef11de99c92ea4b5f14951c9033af035e451ce4f4ee0a88c
-    # via -r .github/scripts/requirements_dev.in
+weasyprint==70.0 \
+    --hash=sha256:5043e55e38d2a2af2b2b871e869697b1f65dad5f8b4a3677961d04ceacf9c5fe \
+    --hash=sha256:c263abf0e86c747b12af678b67f85f4abbfb97d18a20503031e7ba94e4b8cf8c
+    # via -r requirements_dev.in
 webencodings==0.5.1 \
     --hash=sha256:a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78 \
     --hash=sha256:b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923
@@ -521,8 +521,8 @@ zopfli==0.4.3 \
 pip==26.1.2 \
     --hash=sha256:382ff9f685ee3bc25864f820aa50505825f10f5458ffff07e30a6d96e5715cab \
     --hash=sha256:f49cd134c61cf2fd75e0ce2676db03e4054504a5a4986d00f8299ae632dc4605
-    # via -r .github/scripts/requirements_dev.in
+    # via -r requirements_dev.in
 setuptools==83.0.0 \
     --hash=sha256:025bccbbf0fa05b6192bc64ae1e7b16e001fd6d6d4d5de03c97b1c1ade523bef \
     --hash=sha256:29b23c360f22f414dc7336bb39178cc7bcbf6021ed2733cde173f09dba19abb3
-    # via -r .github/scripts/requirements_dev.in
+    # via -r requirements_dev.in
